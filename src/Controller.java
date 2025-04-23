@@ -36,7 +36,14 @@ public class Controller {
         return miModel.incrementarVel(String matricula); /* En el controller al crear el metodo como en este caso es la clase principal que llama a la vista y lo demás y se ejecuta
         se define model en el metodo main así que mi metodo lo necesita para poder llamar al metodo y pasarlo en la View, una alternativa seria hacer que el model y la view aqui sean atributos de la clase Controller o alguna cosa más con estaticos o así*/
     }
+
+    /**
+     * Solicita la realizacion de un incremento de velocidad
+     * @param matricula la matricula del vehiculo
+     * @param miModel el modelo que se va a usar para el cambio
+     * @return la nueva velocidad
+     */
     public int decrementarVelocidad(String matricula, Model miModel) {
-        return miModel.decrementarVel();
+        return miModel.decrementarVel(matricula);
     }
 }
