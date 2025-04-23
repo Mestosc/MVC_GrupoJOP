@@ -55,4 +55,16 @@ public class Model {
     public int getVelocidad(String matricula) {
         return getCoche(matricula).velocidad;
     }
+    // PIERO
+    public int incrementarVel(String matricula){
+       int velocidad =  getCoche(matricula).velocidad+1;
+       cambiarVelocidad(matricula, velocidad);
+       return  velocidad;
+    }
+
+    public int decrementarVel(String matricula){
+        int velocidad =  getCoche(matricula).velocidad-1;
+        cambiarVelocidad(matricula, velocidad);
+        return  velocidad;
+    }
 }
