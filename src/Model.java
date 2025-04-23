@@ -56,13 +56,13 @@ public class Model {
         return getCoche(matricula).velocidad;
     }
     // PIERO
-    public int  incrementarVel(String matricula){
+    public int incrementarVel(String matricula){
        int velocidad =  getCoche(matricula).velocidad+1;
        cambiarVelocidad(matricula, velocidad);
        return  velocidad;
     }
 
-    public int  decrementarVel(String matricula){
+    public int decrementarVel(String matricula){
         int velocidad =  getCoche(matricula).velocidad-1;
         cambiarVelocidad(matricula, velocidad);
         return  velocidad;
