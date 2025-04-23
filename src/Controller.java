@@ -24,4 +24,15 @@ public class Controller {
             System.out.println("Error");
         } ;
     }
+
+    /**
+     * Solicita la realizacion de un incremento de velocidad
+     * @param matricula la matricula del vehiculo
+     * @param miModel el modelo sobre el que se realiza el cambio necesario por los motivos expresados abajo
+     * @return la nueva velocidad
+     */
+    public int incrementarVelocidad(String matricula, Model miModel) {
+        return miModel.incrementarVelocidad(String matricula); /* En el controller al crear el metodo como en este caso es la clase principal que llama a la vista y lo demás y se ejecuta
+        se define model en el metodo main así que mi metodo lo necesita para poder llamar al metodo y pasarlo en la View*/
+    }
 }
