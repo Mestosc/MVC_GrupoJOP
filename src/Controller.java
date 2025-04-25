@@ -33,7 +33,12 @@ public class Controller {
      * @return la nueva velocidad
      */
     public static int incrementarVelocidad(String matricula, Model miModel) {
-        return miModel.incrementarVel(matricula); /* En el controller al crear el metodo como en este caso es la clase principal que llama a la vista y lo demás y se ejecuta
+        int inc =  miModel.incrementarVel(matricula);
+        if (inc==-1) {
+            System.out.println("No existe el vehiculo"); // Normalmente no se pone esto en el Controller lo sacaria la vista pero como de momento no la tratamos represento aqui este muestreo de errores, si se usara de otra manera se lo pasaria a la vista
+            return -1;
+        }
+        return inc; /* En el controller al crear el metodo como en este caso es la clase principal que llama a la vista y lo demás y se ejecuta
         se define model en el metodo main así que mi metodo lo necesita para poder llamar al metodo y pasarlo en la View, una alternativa seria hacer que el model y la view aqui sean atributos de la clase Controller o alguna cosa más con estaticos o así*/
     }
 
@@ -44,6 +49,11 @@ public class Controller {
      * @return la nueva velocidad
      */
     public int decrementarVelocidad(String matricula, Model miModel) {
-        return miModel.decrementarVel(matricula);
+        int inc =  miModel.decrementarVel(matricula);
+        if (inc==-1) {
+            System.out.println("No existe el vehiculo"); // Normalmente no se pone esto en el Controller lo sacaria la vista pero
+            return -1;
+        }
+        return inc;
     }
 }
