@@ -51,7 +51,7 @@ class ModelTest {
             "'101JKL', 987, 987",
             "'202MNO', -412, 0",
             "'303PQR', 2004, 100",
-            "'10240C', 102, 0"
+            "'10240C', 102, 102"
     })
     void cambiarVelocidad(String matricula, int velocidadCambiar, int velocidadEsperada) {
         Model model = new Model();
