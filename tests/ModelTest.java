@@ -94,7 +94,21 @@ class ModelTest {
 
     }
 
-    @Test
-    void decrementarVel() {
+    @ParameterizedTest
+    @CsvSource({
+            "'123ABC', 43, 42",
+            "'456DEF', 100, 99",
+            "'789GHI', 290, 289",
+            "'101JKL', 987, 986",
+            "'202MNO', 1, 0",
+            "'303PQR', 101, 100",
+            "'10240C', 102, 101"
+    })
+    void decrementarVel(String matricula,int velocidadActual, int velocidadEsperada) {
+        Model model = new Model();
+        model.crearCoche("MLD",matricula);
+        model.cambiarVelocidad(matricula,velocidadActual);
+        assertEquals(velocidadEsperada,Controller.decrementarVelocidad(matricula,model));
+
     }
 }
