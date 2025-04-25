@@ -51,7 +51,7 @@ class ModelTest {
             "'101JKL', 987, 987",
             "'202MNO', -412, 0",
             "'303PQR', 2004, 100",
-            "'10240C', 102, 0"
+            "'10240C', 102, 102"
     })
     void cambiarVelocidad(String matricula, int velocidadCambiar, int velocidadEsperada) {
         Model model = new Model();
@@ -74,5 +74,27 @@ class ModelTest {
         model.crearCoche("Fled",matricula);
         model.cambiarVelocidad(matricula,velocidadEsperada);
         assertEquals(velocidadEsperada,model.getVelocidad(matricula));
+    }
+
+    @ParameterizedTest
+    @CsvSource({
+            "'123ABC', 43, 44",
+            "'456DEF', 100, 101",
+            "'789GHI', 290, 291",
+            "'101JKL', 987, 988",
+            "'202MNO', 0, 1",
+            "'303PQR', 100, 101",
+            "'10240C', 102, 103"
+    })
+    void incrementarVel(String matricula,int velocidadActual, int velocidadEsperada) {
+        Model model = new Model();
+        model.crearCoche("MLD",matricula);
+        model.cambiarVelocidad(matricula,velocidadActual);
+        assertEquals(velocidadEsperada,Controller.incrementarVelocidad(matricula,model));
+
+    }
+
+    @Test
+    void decrementarVel() {
     }
 }
