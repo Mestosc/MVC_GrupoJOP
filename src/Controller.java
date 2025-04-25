@@ -34,7 +34,7 @@ public class Controller {
      */
     public static int incrementarVelocidad(String matricula, Model miModel) {
         int inc =  miModel.incrementarVel(matricula);
-        if (inc==-1) {
+        if (inc==-1) { // Este es el manjeo del -1
             System.out.println("No existe el vehiculo"); // Normalmente no se pone esto en el Controller lo sacaria la vista pero como de momento no la tratamos represento aqui este muestreo de errores, si se usara de otra manera se lo pasaria a la vista
             return -1;
         }
