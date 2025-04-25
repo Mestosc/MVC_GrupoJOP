@@ -18,10 +18,10 @@ class ModelTest {
     })
     void crearCoche(String matricula, String modelo) {
         Model model = new Model();
-        Coche aux = model.crearCoche(modelo,matricula);
-        assertNotNull(aux,"No deberia ser null");
-        assertEquals(matricula,aux.matricula);
-        assertEquals(modelo,aux.modelo);
+        Coche aux = model.crearCoche(modelo, matricula);
+        assertNotNull(aux, "No deberia ser null");
+        assertEquals(matricula, aux.matricula);
+        assertEquals(modelo, aux.modelo);
     }
 
     @ParameterizedTest
@@ -34,13 +34,13 @@ class ModelTest {
             "'303PQR', 'Chevrolet Malibu'",
             "'303PBR', 'Chevrolet Malibu'"
     })
-    void getCoche(String matricula,String modelo) {
+    void getCoche(String matricula, String modelo) {
         Model model = new Model();
-        model.crearCoche(modelo,matricula);
+        model.crearCoche(modelo, matricula);
         Coche aux = model.getCoche(matricula);
-        assertNotNull(aux,"No deberia ser nulo");
-        assertEquals(matricula,aux.matricula);
-        assertEquals(modelo,aux.modelo);
+        assertNotNull(aux, "No deberia ser nulo");
+        assertEquals(matricula, aux.matricula);
+        assertEquals(modelo, aux.modelo);
     }
 
     @ParameterizedTest
@@ -55,8 +55,8 @@ class ModelTest {
     })
     void cambiarVelocidad(String matricula, int velocidadCambiar, int velocidadEsperada) {
         Model model = new Model();
-        model.crearCoche("Fled",matricula);
-        assertEquals(velocidadEsperada,model.cambiarVelocidad(matricula,velocidadCambiar));
+        model.crearCoche("Fled", matricula);
+        assertEquals(velocidadEsperada, model.cambiarVelocidad(matricula, velocidadCambiar));
     }
 
     @ParameterizedTest
@@ -71,8 +71,32 @@ class ModelTest {
     })
     void getVelocidad(String matricula, int velocidadEsperada) {
         Model model = new Model();
-        model.crearCoche("Fled",matricula);
-        model.cambiarVelocidad(matricula,velocidadEsperada);
-        assertEquals(velocidadEsperada,model.getVelocidad(matricula));
+        model.crearCoche("Fled", matricula);
+        model.cambiarVelocidad(matricula, velocidadEsperada);
+        assertEquals(velocidadEsperada, model.getVelocidad(matricula));
+    }
+
+    @ParameterizedTest
+    @CsvSource({
+            "123ABC,123ABC,1",
+            "10240C,123ABC,-1"
+    })
+    void incrementarVelocidad(String matriculaCreada,String matriculaBuscar,int velocidadEsperada) {
+        Model model = new Model();
+        model.crearCoche("Citroen M2", matriculaCreada);
+        assertEquals(velocidadEsperada, model.incrementarVel(matriculaBuscar));
+        assertEquals(velocidadEsperada, model.incrementarVel(matriculaBuscar));
+    }
+    @ParameterizedTest
+    @CsvSource({
+            "123ABC,123ABC,1",
+            "10240C,123ABC,-1"
+    })
+    void decrementarVelocidad(String matriculaCreada,String matriculaBuscar,int velocidadEsperada) {
+        Model model = new Model();
+        model.crearCoche("Citroen M2", matriculaCreada);
+        model.cambiarVelocidad(matriculaCreada,2);
+        assertEquals(velocidadEsperada, model.decrementarVel(matriculaBuscar));
+        assertEquals(velocidadEsperada, model.decrementarVel(matriculaBuscar));
     }
 }
