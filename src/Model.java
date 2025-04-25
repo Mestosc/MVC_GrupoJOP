@@ -57,14 +57,21 @@ public class Model {
     }
     // PIERO
     public int  incrementarVel(String matricula){
-       int velocidad =  getCoche(matricula).velocidad+1;
+        if (getCoche(matricula) == null){ // Por si no se detecta una matricula retorna -1, que es el indice de que es un fallo
+            return  -1;
+        }
+        int velocidad =  getCoche(matricula).velocidad+1;
        cambiarVelocidad(matricula, velocidad);
        return  velocidad;
     }
 
     public int  decrementarVel(String matricula){
+        if (getCoche(matricula) == null){
+            return  -1;
+        }
         int velocidad =  getCoche(matricula).velocidad-1;
         cambiarVelocidad(matricula, velocidad);
+
         return  velocidad;
     }
 }
