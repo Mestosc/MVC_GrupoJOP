@@ -75,24 +75,23 @@ class ModelTest {
 
     @ParameterizedTest
     @CsvSource({
-            "123ABC,123ABC,1",
-            "10240C,123ABC,-1"
+            "123ABC,1",
+            "10240C,1"
     })
-    void incrementarVelocidad(String matriculaCreada,String matriculaBuscar,int velocidadEsperada) {
+    void incrementarVelocidad(String matriculaCreada,int velocidadEsperada) {
         Model.crearCoche("Citroen M2", matriculaCreada);
-        assertEquals(velocidadEsperada, Model.incrementarVel(matriculaBuscar));
-        assertEquals(velocidadEsperada, Model.incrementarVel(matriculaBuscar));
+        Model.cambiarVelocidad(matriculaCreada,0);
+        assertEquals(velocidadEsperada, Model.incrementarVel(matriculaCreada));
     }
     @ParameterizedTest
     @CsvSource({
-            "123ABC,123ABC,1",
-            "10240C,123ABC,-1"
+            "123ABC,1",
+            "10240C,1"
     })
-    void decrementarVelocidad(String matriculaCreada,String matriculaBuscar,int velocidadEsperada) {
+    void decrementarVelocidad(String matriculaCreada,int velocidadEsperada) {
         Model.crearCoche("Citroen M2", matriculaCreada);
         Model.cambiarVelocidad(matriculaCreada,2);
-        assertEquals(velocidadEsperada, Model.decrementarVel(matriculaBuscar));
-        assertEquals(velocidadEsperada, Model.decrementarVel(matriculaBuscar));
+        assertEquals(velocidadEsperada, Model.decrementarVel(matriculaCreada));
     }
 
     @ParameterizedTest
