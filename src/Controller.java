@@ -1,8 +1,10 @@
 
 
 public class Controller {
-    
-    public static void main(String[] args) {
+    public static Coche crearCoche(String modelo,String matricula) {
+        return Model.crearCoche(modelo,matricula);
+    }
+    public static void inicio() {
         // Crear tres coches
         Model.crearCoche("LaFerrari", "SBC 1234");
         Model.crearCoche("Alpine", "HYU 4567");
@@ -51,5 +53,8 @@ public class Controller {
             return -1;
         }
         return inc;
+    }
+    public static int obtenerVelocidad(String matricula) {
+        return Model.getVelocidad(matricula);
     }
 }

@@ -1,7 +1,29 @@
+import java.util.Scanner;
+
 /**
  * Clase encargada de la interacción con el usuario
  */
 public class View {
+
+    public static void menu() {
+        Scanner sc = new Scanner(System.in);
+        int opcion;
+        do {
+            System.out.println("1. Crear Coche\n2.Cambiar Velocidad\n3.Mostrar Velocidad\n4.Salir");
+            opcion = Integer.parseInt(sc.next());
+            switch (opcion) {
+                case 1 -> {
+                    System.out.println(crearCoche(sc));
+                } case 2 ->  {
+
+                } case 3 -> {
+                    System.out.println("Indiqueme la matricula del vehiculo:");
+                    var matricula = sc.next();
+                    System.out.println(muestraVelocidad(matricula,Controller.obtenerVelocidad(matricula)));
+                }
+            }
+        } while (opcion!=4);
+    }
     /**
      * Muestra la velocidad de un coche
      * @param matricula del coche
@@ -11,5 +33,13 @@ public class View {
     public static boolean muestraVelocidad(String matricula, Integer v){
         System.out.println(matricula + ": " + v + "km/hr");
         return true;
+    }
+    public static String crearCoche(Scanner sc) {
+        System.out.print("Digame la matricula del coche:");
+        var matricula = sc.next();
+        System.out.print("Digame el modelo del coche:");
+        var modelo = sc.next();
+        Coche c = Controller.crearCoche(modelo, matricula);
+        return c.matricula;
     }
 }
