@@ -45,7 +45,7 @@ public class Controller {
      * @param miModel el modelo que se va a usar para el cambio
      * @return la nueva velocidad
      */
-    public int decrementarVelocidad(String matricula) {
+    public static int decrementarVelocidad(String matricula) {
         int inc =  Model.decrementarVel(matricula);
         if (inc==-1) {
             System.out.println("No existe el vehiculo"); // Normalmente no se pone esto en el Controller lo sacaria la vista pero
