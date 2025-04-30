@@ -3,7 +3,6 @@
 public class Controller {
     
     public static void main(String[] args) {
-
         // Crear tres coches
         Model.crearCoche("LaFerrari", "SBC 1234");
         Model.crearCoche("Alpine", "HYU 4567");
