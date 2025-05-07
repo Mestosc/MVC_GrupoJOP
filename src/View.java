@@ -9,7 +9,7 @@ public class View {
         Scanner sc = new Scanner(System.in);
         int opcion;
         do {
-            System.out.println("1. Crear Coche\n2.Cambiar Velocidad\n3.Mostrar Velocidad\n4.Salir");
+            System.out.println("1.Crear Coche\n2.Cambiar Velocidad\n3.Mostrar Velocidad\n4.Salir");
             opcion = sc.nextInt();
             switch (opcion) {
                 case 1 -> {
@@ -17,21 +17,35 @@ public class View {
                 } case 2 ->  {
                     System.out.println("Nueva velocidad: " + cambiarVelocidad());
                 } case 3 -> {
-                    System.out.println("Indiqueme la matricula del vehiculo:");
-                    var matricula = sc.next();
-                    System.out.println(muestraVelocidad(matricula,Controller.obtenerVelocidad(matricula)));
+                    var matricula = pedirMatricula();
+                    muestraVelocidad(matricula,Controller.obtenerVelocidad(matricula));
                 }
             }
         } while (opcion!=4);
     }
 
+    /**
+     * Solicita la informacíon necesaria para cambiar la velocidad
+     * @return La velocidad con el cambio aplicado
+     */
     private static int cambiarVelocidad() {
         Scanner sc = new Scanner(System.in);
-        System.out.println("Inidqueme la matricula del vehiculo");
-        var matricula = sc.next();
+        var matricula = pedirMatricula();
         System.out.println("Indicame la nueva velocidad del vehiculo");
         var nuevaVel = sc.nextInt();
-        return Controller.cambiarVelocidad(matricula,nuevaVel);
+        try {
+            return Controller.cambiarVelocidad(matricula, nuevaVel);
+        } catch (Exception e) {
+            System.err.println("No existe el coche al que intenta hacerle un cambio de velocidad " + e.getMessage());
+            menu();
+        }
+        return 0;
+    }
+
+    private static String pedirMatricula() {
+        Scanner sc = new Scanner(System.in);
+        System.out.println("Indiqueme la matricula del vehiculo:");
+        return sc.next();
     }
 
     /**
@@ -44,6 +58,11 @@ public class View {
         System.out.println(matricula + ": " + v + "km/hr");
         return true;
     }
+
+    /**
+     * Pide toda la informacion necesaria al usuario para proceder a la creacion de un vehiculo
+     * @return la matricula del coche
+     */
     public static String crearCoche() {
         Scanner sc = new Scanner(System.in);
         System.out.print("Digame la matricula del coche:");
