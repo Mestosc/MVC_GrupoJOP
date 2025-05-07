@@ -21,13 +21,12 @@ public class Controller {
             System.out.println("Correcto");
         } else {
             System.out.println("Error");
-        } ;
+        }
     }
 
     /**
      * Solicita la realizacion de un incremento de velocidad
      * @param matricula la matricula del vehiculo
-     * @param miModel el modelo sobre el que se realiza el cambio necesario por los motivos expresados abajo
      * @return la nueva velocidad
      */
     public static int incrementarVelocidad(String matricula) {
@@ -45,7 +44,6 @@ public class Controller {
     /**
      * Solicita la realizacion de un incremento de velocidad
      * @param matricula la matricula del vehiculo
-     * @param miModel el modelo que se va a usar para el cambio
      * @return la nueva velocidad
      */
     public static int decrementarVelocidad(String matricula) {
