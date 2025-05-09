@@ -1,5 +1,7 @@
 import org.junit.jupiter.params.provider.EnumSource;
 
+import java.util.ArrayList;
+
 public class Controller {
     public static Coche crearCoche(String modelo,String matricula) {
         return Model.crearCoche(modelo,matricula);
@@ -23,7 +25,9 @@ public class Controller {
             System.out.println("Error");
         }
     }
-
+    public static ArrayList<Coche> obtenerParking() {
+        return Model.parking;
+    }
     /**
      * Solicita la realizacion de un incremento de velocidad
      * @param matricula la matricula del vehiculo

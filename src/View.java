@@ -1,3 +1,4 @@
+import java.util.ArrayList;
 import java.util.Scanner;
 
 /**
@@ -9,7 +10,7 @@ public class View {
         Scanner sc = new Scanner(System.in);
         int opcion;
         do {
-            System.out.println("1.Crear Coche\n2.Cambiar Velocidad\n3.Mostrar Velocidad\n4.Salir");
+            System.out.println("1.Crear Coche\n2.Cambiar Velocidad\n3.Mostrar Velocidad\n4.Subir velocidad\n5.Bajar velocidad\n6.Mostrar coches\n7.Salir");
             opcion = sc.nextInt();
             switch (opcion) {
                 case 1 -> {
@@ -19,9 +20,17 @@ public class View {
                 } case 3 -> {
                     var matricula = pedirMatricula();
                     muestraVelocidad(matricula,Controller.obtenerVelocidad(matricula));
+                } case 4 -> {
+                    var matricula = pedirMatricula();
+                    System.out.println("La velocidad ha sido cambiada a " + Controller.incrementarVelocidad(matricula));
+                } case 5 -> {
+                    var matricula = pedirMatricula();
+                    System.out.println("La velocidad ha sido cambiada a " + Controller.decrementarVelocidad(matricula));
+                } case 6 -> {
+                    mostrarCoches();
                 }
             }
-        } while (opcion!=4);
+        } while (opcion!=7);
     }
 
     /**
@@ -41,7 +50,14 @@ public class View {
         }
         return 0;
     }
-
+    private static ArrayList<Coche> mostrarCoches() {
+        ArrayList<Coche> coches = Controller.obtenerParking();
+        for (Coche coche : coches) {
+            System.out.println("Modelo: " + coche.modelo);
+            System.out.println("\tMatricula: " + coche.matricula);
+        }
+        return coches;
+    }
     private static String pedirMatricula() {
         Scanner sc = new Scanner(System.in);
         System.out.println("Indiqueme la matricula del vehiculo:");
@@ -67,8 +83,9 @@ public class View {
         Scanner sc = new Scanner(System.in);
         System.out.print("Digame la matricula del coche:");
         var matricula = sc.next();
+        sc.nextLine();
         System.out.print("Digame el modelo del coche:");
-        var modelo = sc.next();
+        var modelo = sc.nextLine();
         Coche c = Controller.crearCoche(modelo, matricula);
         return c.matricula;
     }
