@@ -1,3 +1,4 @@
+import javax.lang.model.type.NullType;
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -5,7 +6,9 @@ import java.util.Scanner;
  * Clase encargada de la interacción con el usuario
  */
 public class View {
-
+    /**
+     * Menu de la aplicacion
+     */
     public static void menu() {
         Scanner sc = new Scanner(System.in);
         int opcion;
@@ -14,7 +17,7 @@ public class View {
             opcion = sc.nextInt();
             switch (opcion) {
                 case 1 -> {
-                    System.out.println(crearCoche());
+                    System.out.println("Coche " + crearCoche() + " creado.");
                 } case 2 ->  {
                     System.out.println("Nueva velocidad: " + cambiarVelocidad());
                 } case 3 -> {
@@ -50,6 +53,11 @@ public class View {
         }
         return 0;
     }
+
+    /**
+     * Muestra los coches en el parking
+     * @return los coches del parking
+     */
     private static ArrayList<Coche> mostrarCoches() {
         ArrayList<Coche> coches = Controller.obtenerParking();
         for (Coche coche : coches) {
@@ -71,8 +79,13 @@ public class View {
      * @return true si se ha mostrado correctamente
      */
     public static boolean muestraVelocidad(String matricula, Integer v){
-        System.out.println(matricula + ": " + v + "km/hr");
-        return true;
+        try {
+            System.out.println(matricula + ": " + v + "km/hr");
+            return true;
+        } catch (NullPointerException e) {
+            System.err.println("No existe el vehiculo del cual estas intentando obtener la velocidad");
+        }
+        return false;
     }
 
     /**
