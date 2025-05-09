@@ -1,4 +1,3 @@
-import javax.lang.model.type.NullType;
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -47,9 +46,8 @@ public class View {
         var nuevaVel = sc.nextInt();
         try {
             return Controller.cambiarVelocidad(matricula, nuevaVel);
-        } catch (Exception e) {
+        } catch (NullPointerException e) {
             System.err.println("No existe el coche al que intenta hacerle un cambio de velocidad " + e.getMessage());
-            menu();
         }
         return 0;
     }
@@ -78,14 +76,9 @@ public class View {
      * @param v velocidad
      * @return true si se ha mostrado correctamente
      */
-    public static boolean muestraVelocidad(String matricula, Integer v){
-        try {
+    public static boolean muestraVelocidad(String matricula, Integer v) {
             System.out.println(matricula + ": " + v + "km/hr");
             return true;
-        } catch (NullPointerException e) {
-            System.err.println("No existe el vehiculo del cual estas intentando obtener la velocidad");
-        }
-        return false;
     }
 
     /**
