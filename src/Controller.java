@@ -25,6 +25,9 @@ public class Controller {
             System.out.println("Error");
         }
     }
+    public static Coche obtenerCoche(String matricula) {
+        return Model.getCoche(matricula);
+    }
     public static ArrayList<Coche> obtenerParking() {
         return Model.parking;
     }

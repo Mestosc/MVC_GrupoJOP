@@ -12,7 +12,7 @@ public class View {
         Scanner sc = new Scanner(System.in);
         int opcion;
         do {
-            System.out.println("1.Crear Coche\n2.Cambiar Velocidad\n3.Mostrar Velocidad\n4.Subir velocidad\n5.Bajar velocidad\n6.Mostrar coches\n7.Salir");
+            System.out.println("1.Crear Coche\n2.Cambiar Velocidad\n3.Mostrar Velocidad\n4.Subir velocidad\n5.Bajar velocidad\n6.Mostrar coches\n7.Mostrar coche\n8.Salir");
             opcion = sc.nextInt();
             switch (opcion) {
                 case 1 -> {
@@ -30,9 +30,12 @@ public class View {
                     System.out.println("La velocidad ha sido cambiada a " + Controller.decrementarVelocidad(matricula));
                 } case 6 -> {
                     mostrarCoches();
+                } case 7 -> {
+                    var matricula = pedirMatricula();
+                    mostrarCoche(matricula);
                 }
             }
-        } while (opcion!=7);
+        } while (opcion!=8);
     }
 
     /**
@@ -52,6 +55,12 @@ public class View {
         return 0;
     }
 
+    private static boolean mostrarCoche(String matricula) {
+        Coche c = Controller.obtenerCoche(matricula);
+        System.out.println("Matricula: " +  c.matricula);
+        System.out.println("Modelo: " + c.modelo);
+        return true;
+    }
     /**
      * Muestra los coches en el parking
      * @return los coches del parking
