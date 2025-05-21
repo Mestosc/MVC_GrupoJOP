@@ -55,11 +55,22 @@ public class View {
         return 0;
     }
 
+    /**
+     * Muestra un coche en especifico
+     * @param matricula la matricula del coche
+     * @return true si el coche se muestra y existe
+     */
     private static boolean mostrarCoche(String matricula) {
         Coche c = Controller.obtenerCoche(matricula);
-        System.out.println("Matricula: " +  c.matricula);
-        System.out.println("Modelo: " + c.modelo);
-        return true;
+        try {
+            System.out.println("Matricula: " +  c.matricula);
+            System.out.println("Modelo: " + c.modelo);
+            muestraVelocidad(c.matricula,c.velocidad);
+            return true;
+        } catch (NullPointerException e) {
+            System.out.println("Ha habido un error al mostrar el coche: " + e.getMessage());
+        }
+        return false;
     }
     /**
      * Muestra los coches en el parking
@@ -67,12 +78,21 @@ public class View {
      */
     private static ArrayList<Coche> mostrarCoches() {
         ArrayList<Coche> coches = Controller.obtenerParking();
-        for (Coche coche : coches) {
-            System.out.println("Modelo: " + coche.modelo);
-            System.out.println("\tMatricula: " + coche.matricula);
+        if (!coches.isEmpty()) {
+            for (Coche coche : coches) {
+                mostrarCoche(coche.matricula);
+                System.out.println();
+            }
+            return coches;
         }
-        return coches;
+        System.out.println("No existen coches");
+        return null;
     }
+
+    /**
+     * Pide la matricula de un vehiculo
+     * @return la matricula de ese vehiculo
+     */
     private static String pedirMatricula() {
         Scanner sc = new Scanner(System.in);
         System.out.println("Indiqueme la matricula del vehiculo:");

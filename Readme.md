@@ -69,3 +69,36 @@ sequenceDiagram
     View-->>Controller: boolean
     deactivate View
 ```
+Diagrama de secuencia propio
+```mermaid
+sequenceDiagram
+   participant View
+   participant Controller
+   participant Model
+   activate View
+   View->>+Controller:crearCoche(matricula,modelo)
+   Controller->>+Model:crearCoche(matricula,modelo)
+   activate Model
+   Model-->>Controller: new Coche
+   deactivate Model
+   activate Controller
+   Controller-->>View: new Coche
+   deactivate Controller
+   View->>+Controller: cambiarVelocidad(String,Integer)
+   Controller->>+Model: cambiarVelocidad(String,Integer)
+   activate Model
+   Model-->>+Controller: nuevaVelocidad
+   deactivate Model
+   Controller-->>View: nuevaVelocidad
+   View->>+Controller: incrementarVelocidad(String)
+   Controller->>+Model: incrementarVelocidad(String)
+   activate Model
+   Model-->>+Controller: velocidadIncrementada
+   deactivate Model
+   Controller-->>+View: velocidadIncrementada
+   View->>+Controller: obtenerCoche(matricula)
+   Controller->>+Model: obtenerCoche(matricula)
+   activate Model
+   Model-->>+Controller: Coche solicitado
+   deactivate Model
+```
